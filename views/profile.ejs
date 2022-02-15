@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ru">
+   <!--<![endif]-->
+   <head> 
+      <%- include('includes/head')%> 
+   </head>
+   <body>
+      
+      <!-- Menu !--> 
+      <%- include('includes/header')%>
+      <div class="wrapper wrapper-shift"> 
+          
+         <div class="content-container"> 
+            <%- include('includes/menu')%>    
+    
+            <% 
+              const statuses = {
+                "0": "Пользователь", 
+                "1": "Администратор"
+              }
+            %>
+ 
+            <div id="content" class="col-sm-7" style="margin: 50px 0 200px 0; min-height: 300px;"> 
+              <div class="container-fluid"> 
+                <h3 class="text-center">Ваш профиль</h3>
+                <table class="table table-bordered" id="table-my-account">  
+                  <tbody>
+                    <tr> 
+                       <td class="text-left">ID</td> 
+                       <td class="text-left"><%- session.user.userId %></td> 
+                    </tr>
+                    <tr> 
+                       <td class="text-left">Имя</td> 
+                       <td class="text-left"><%- session.user.fullName %></td> 
+                    </tr>
+                    <tr> 
+                       <td class="text-left">Телефон</td> 
+                       <td class="text-left"><%- session.user.phone %></td> 
+                    </tr>  
+                    <tr> 
+                       <td class="text-left">Статус:</td> 
+                       <td class="text-left"><%- statuses[session.user.isAdmin] %></td> 
+                    </tr>  
+                  </tbody>
+                </table>    
+              </div>
+            </div> 
+         </div>
+      </div>
+      <%- include('includes/footer')%> 
+   </body>
+</html>

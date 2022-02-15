@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ru">
+   <!--<![endif]-->
+   <head>
+      <%- include('includes/head')%> 
+   </head>
+   <body>
+      <!-- Menu !--> 
+      <%- include('includes/header')%> 
+      <div class="wrapper wrapper-shift">  
+
+         <div class="content-container">
+            <%- include('includes/menu')%>  
+            
+            <section class="success">
+               <h1><%- text %> </h1>
+               <br>
+               <a class="btn btn-primary btn-lg btn-block" type="button" href="/" >На главную</a> 
+            </section>
+ 
+            <div class="height-indent" style="margin-top: 100px;"></div>
+            <%- include('includes/insert')%>    
+         </div>
+      </div> 
+      <%- include('includes/footer')%> 
+   </body>
+</html>

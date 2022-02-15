@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ru">
+   <!--<![endif]-->
+   <head> 
+      <%- include('includes/head')%> 
+   </head>
+   <body>
+      <!-- Menu !--> 
+      <%- include('includes/header')%>
+      <div class="wrapper wrapper-shift">
+             
+         <div class="content-container">
+            <%- include('includes/menu')%>  
+            <div id="checkout-cart" class="container-fluid">
+               <ul class="breadcrumb">
+                  <li><a href="/">Главная</a></li> 
+               </ul> 
+                 
+               <div class="row">  
+                  <div class="col-25" style="margin-bottom: 30px; margin-top: 40px;">
+                   <div class="container">  
+                      
+                     <h3><i class="fa fa-credit-card" aria-hidden="true"></i> Итоговая сумма заказа: 
+                        <span class="price" style="color:black;">
+                           <b><%- data.price %> руб.</b>
+                        </span> 
+                     </h3>
+                   </div>
+                  </div> 
+                  
+                  <div class="col-75">
+                   <div class="container">
+                     <form action="/order/<%- data.productId %>" method="post" enctype="multipart/form-data" class="js-form-validate">
+
+                        <fieldset id="data">
+                           <legend>Контактные данные</legend>
+                           <div class="form-group required">
+                              <label class="control-label " for="input-firstname"><i class="fa fa-user"></i> Ф.И.О</label>
+                              <div class="some-form__line form-order">
+                                 <input type="text" name="fullName" value="" placeholder="Иванов Иван Иванович" id="input-firstname" class="form-control" data-validate>
+                                 <span class="some-form__hint">Ф.И.О должно быть от 5 до 50 символов</span> 
+                              </div>
+                           </div> 
+                           <div class="form-group required">
+                              <label class="control-label" for="input-email"><i class="fa fa-envelope"></i><b> Email </b></label>
+                              <div class="some-form__line form-order">
+                                 <input type="email" name="email" value="" placeholder="E-Mail" id="input-email" class="form-control" data-validate>
+                                 <span class="some-form__hint">E-Mail введен неправильно</span> 
+                              </div>
+                           </div>
+                           <div class="form-group required">
+                              <label class="control-label" for="input-telephone"><i class="fa fa-envelope"></i><b> Телефон </b></label>
+                              <div class="some-form__line form-order"> 
+                                 <input type="tel" name="phone" value="" placeholder="Телефон" id="input-telephone" class="form-control" data-validate>
+                                 <span class="some-form__hint">Телефон должен состоять из 11 символов</span> 
+                              </div>
+                           </div>
+                           <div class="form-group required">
+                              <label class="control-label" for="input-text"><i class="fa fa-institution"></i><b> Город </b></label>
+                              <div class="some-form__line"> 
+                                 <input type="text" name="city" value="" placeholder="Москва" id="input-text" class="form-control" data-validate>
+                                 <span class="some-form__hint">Город должен быть от 2 до 50 символов</span> 
+                              </div>
+                           </div>
+                           <div class="form-group required">
+                              <label class="control-label" for="input-lastname"><i class="fa fa-address-card-o"></i><b> Адрес доставки </b></label>
+                              <div class="some-form__line form-order">
+                                 <input type="text" name="address" value="" placeholder="Бабаевская улица, дом-10, кв-2" id="input-lastname" class="form-control" data-validate> 
+                                 <span class="some-form__hint">Адрес должен быть от 3 до 70 символов</span> 
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label class="control-label" for="input-telephone"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><b> Ваши пожелания к заказу, уточните размеры или цвет </b></label>
+                              <textarea rows="4" style="width: 100%;" name="comment" placeholder='Ваши пожелания к заказу, уточните размеры или цвет'></textarea>
+                           </div>
+                        </fieldset> 
+                       </div>
+
+                       <table class="table table-bordered" style="margin-top: 2rem;">
+                           <thead style="background-color: #474747; color: #fff;">
+                              <tr>
+                                 <th class="text-center">ID</th>
+                                 <th class="text-center">Фотография</th>
+                                 <th class="text-left">Название</th>
+                                 <th class="text-left">Количество</th> 
+                                 <th class="text-left">Цена</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>  
+                                 <td class="text-left"><%- data.productId %></td>
+                                 <td class="text-center"> 
+                                    <img src="<%- data.photo %>"  alt="<%- data.title %>" title="<%- data.title %>" class="img-responsive" style="height: 100px;">
+                                 </td>
+                                 <td class="text-left"><%- data.title %></td>
+                                 <td class="text-left">1</td>
+                                 <td class="text-left"><%- data.price %></td>
+                              </tr> 
+                           </tbody>
+                        </table> 
+
+                       <input type="submit" value="Продолжить" class="btn-order">
+                     </form>
+                   </div>
+                 </div>
+
+               <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.js"></script>
+               <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.js"></script>
+               <script src="./scripts/order.js"></script>  
+               </div> 
+         </div>
+      </div>
+      <%- include('includes/footer')%> 
+   </body>
+</html>

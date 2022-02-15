@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ru">
+   <!--<![endif]-->
+   <head> 
+      <%- include('includes/head')%> 
+   </head>
+   <body>
+      <!-- Menu !--> 
+      <%- include('includes/header')%>
+      <div class="wrapper wrapper-shift">    
+
+         <div class="content-container">
+            <%- include('includes/menu')%>  
+            <div id="checkout-cart" class="container-fluid">
+               <ul class="breadcrumb">
+                  <li><a href="/">Главная</a></li>
+                  <li><a href="/admin/orders">Заказы</a></li>
+               </ul>
+               <% if (!data.length) { %>
+               <div class="row">
+                  <div id="content" class="col-sm-12"> 
+                     <p>Список заказов пуст!</p>
+                     <div class="buttons clearfix">
+                        <div class="pull-right"><a href="/" class="btn btn-primary">На главную</a></div>
+                     </div>
+                  </div>
+               </div>
+               <% } else { %>
+               <div class="row">
+                  <div id="content" class="col-sm-12">
+                
+                        <h1>Список всех заказов</h1>
+                       
+                        <div class="table-responsive">
+
+                           <table class="table table-sm table-bordered js-sort-table" style="overflow: scroll;">
+                              <thead style="background-color: #474747; color: #fff;">
+                                 <tr> 
+                                    <th class="text-center">ID заказа</th>  
+                                    <th class="text-left" style="width: 10%;">ФИО</th>
+                                    <th class="text-left" style="width: 10%;">Телефон</th>
+                                    <th class="text-left">Адрес</th>  
+                                    <th class="text-left">Дата заказа</th>  
+                                    <th class="text-left">Сумма заказа</th>
+                                    <th class="text-left">Товар</th>
+                                    <th class="text-left">Фото</th>
+                                    <th class="text-center">Удалить</th>
+                                 </tr>
+                              </thead>
+                              <tbody style="word-break: break-all;">
+                                 <% data.forEach(product => { %>
+                                    <tr>  
+                                       <td class="text-center"> 
+                                          <%- product.orderId %>
+                                       </td>    
+                                       <td class="text-left" style="min-width: 200px;"> 
+                                          <%- product.fullName %>
+                                       </td>
+                                       <td class="text-left" style="min-width: 100px;"> 
+                                          <%- product.phone %>
+                                       </td>
+                                       <td class="text-left" style="min-width: 100px;">
+                                          <%- product.address %>                                                                      
+                                       </td>  
+                                       <td class="text-left" style="min-width: 100px;">
+                                          <%- product.date %>                                                                      
+                                       </td>  
+                                       <td class="text-left" style="min-width: 100px;"><%- product.price %></td>
+                                       <td class="text-left" style="min-width: 100px;"><%- product.title %></td>
+                                       <td class="text-left" style="min-width: 100px;">
+                                          <img src="<%- product.photo %>" alt="<%- product.title %>"  class="img-responsive" id="photo-catalog" width="100"/>
+                                       </td>
+
+                                       <td class="text-center">
+                                          <a href="admin/orders/delete/<%- product.orderId %>">
+                                             <button type="button" data-toggle="tooltip" title="" data-original-title="Удалить" style="background-color: red; color: #fff; border: none; border-radius: 10%; padding: 10px;">
+                                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon"> 
+                                                   <circle cx="12" cy="12" r="10"></circle>
+                                                   <line x1="15" y1="9" x2="9" y2="15"></line>
+                                                   <line x1="9" y1="9" x2="15" y2="15"></line>
+                                                </svg>
+                                             </button>
+                                          </a>
+                                       </td> 
+                                    </tr>
+                                 <% })  %>
+                                  
+                              </tbody>
+                           </table>  
+                        </div>
+                         
+                     <script type="text/javascript" src="/scripts/sort-table.js"></script>   
+ 
+
+                  </div>
+               </div>
+            </div>
+            <% } %>  
+         </div>
+      </div>
+      <%- include('includes/footer')%> 
+   </body>
+</html>

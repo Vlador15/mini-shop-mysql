@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ru">
+   <!--<![endif]-->
+   <head> 
+      <%- include('includes/head')%> 
+   </head>
+   <body>
+      <!-- Menu !--> 
+      <%- include('includes/header')%>
+      <div class="wrapper wrapper-shift">    
+
+         <div class="content-container">
+            <%- include('includes/menu')%>  
+            <div id="checkout-cart" class="container-fluid">
+               <ul class="breadcrumb">
+                  <li><a href="/">Главная</a></li>
+                  <li><a href="/admin/orders">Заказы</a></li>
+               </ul>
+               <% if (!categories.length) { %>
+               <div class="row">
+                  <div id="content" class="col-sm-12"> 
+                     <p>Список категорий пуст!</p>
+                     <div class="buttons clearfix">
+                        <div class="pull-right"><a href="/" class="btn btn-primary">На главную</a></div>
+                     </div>
+                  </div>
+               </div>
+               <% } else { %>
+               <div class="row">
+                  <div id="content" class="col-sm-12">
+                
+                        <h1>Список всех категорий</h1>
+                       
+                        <div class="table-responsive">
+
+                           <table class="table table-sm table-bordered js-sort-table" style="overflow: scroll;">
+                              <thead style="background-color: #474747; color: #fff;">
+                                 <tr> 
+                                    <th class="text-center">ID категории</th>  
+                                    <th class="text-left">Название категории</th>  
+                                    <th class="text-left">Путь (en)</th>   
+                                    <th class="text-center">Открыть</th>
+                                    <th class="text-center">Удалить</th>
+                                 </tr>
+                              </thead>
+                              <tbody style="word-break: break-all;">
+                                 <% categories.forEach(category => { %>
+                                    <tr>  
+                                       <td class="text-center"> 
+                                          <%- category.categoryId %>
+                                       </td>    
+                                       <td class="text-left" style="min-width: 200px;"> 
+                                          <%- category.name %>
+                                       </td>
+                                       <td class="text-left" style="min-width: 100px;"> 
+                                          <%- category.path %>
+                                       </td> 
+
+                                       <td class="text-center">
+                                          <a href="admin/product/<%- category.categoryId %>"> 
+                                             Посмотреть
+                                          </a>
+                                       </td> 
+                                       <td class="text-center">
+                                          <a href="admin/category/delete/<%- category.categoryId %>" style="color: red;"> 
+                                             Удалить
+                                          </a>
+                                       </td> 
+                                    </tr>
+                                 <% })  %>
+                                  
+                              </tbody>
+                           </table>  
+                        </div>
+                         
+                     <script type="text/javascript" src="/scripts/sort-table.js"></script>   
+ 
+
+                  </div>
+               </div>
+            </div>
+            <% } %>  
+         </div>
+      </div>
+      <%- include('includes/footer')%> 
+   </body>
+</html>
